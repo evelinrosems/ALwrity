@@ -4,6 +4,9 @@ Main router that includes all subscription-related endpoints.
 """
 
 from fastapi import APIRouter
+import os
+
+SKIP_PAYMENT = os.getenv("SKIP_PAYMENT", "false").lower() == "true"
 
 from .routes import (
     usage,
@@ -13,10 +16,12 @@ from .routes import (
     dashboard,
     logs,
     preflight,
-    payment,
     disputes,
     fraud_warnings,
 )
+
+if not SKIP_PAYMENT:
+    from .routes import payment
 
 # Create main router
 router = APIRouter(prefix="/api/subscription", tags=["subscription"])
@@ -29,7 +34,10 @@ router.include_router(alerts.router, tags=["subscription"])
 router.include_router(dashboard.router, tags=["subscription"])
 router.include_router(logs.router, tags=["subscription"])
 router.include_router(preflight.router, tags=["subscription"])
-router.include_router(payment.router, tags=["subscription"])
+
+if not SKIP_PAYMENT:
+    router.include_router(payment.router, tags=["subscription"])
+
 router.include_router(disputes.router, tags=["subscription"])
 router.include_router(fraud_warnings.router, tags=["subscription"])
 

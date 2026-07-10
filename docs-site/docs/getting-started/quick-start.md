@@ -138,9 +138,17 @@ Example:
 GEMINI_API_KEY=your_gemini_api_key
 OPENAI_API_KEY=your_openai_api_key
 ANTHROPIC_API_KEY=your_anthropic_api_key
+
+# Local development
+GPT_PROVIDER=WAVESPEED
+ALWRITY_ENABLED_FEATURES=blog_writer
+SKIP_PAYMENT=true
+TAVILY_API_KEY=
+EXA_API_KEY=
+WAVESPEED_API_KEY=
 ```
 
-The following table explains the most important environment variables used during local development.
+> **Note:** For local development, setting `ALWRITY_ENABLED_FEATURES=blog_writer` starts only the Blog Writer feature and skips initialization of unrelated optional services, making local setup faster and simpler.
 
 ### Environment Variable Descriptions
 
@@ -184,6 +192,8 @@ Example:
 REACT_APP_API_BASE_URL=http://localhost:8000
 REACT_APP_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 REACT_APP_CLERK_JWT_TEMPLATE=
+
+REACT_APP_ENABLED_FEATURES=blog_writer
 ```
 
 ### Frontend Environment Variable Descriptions
