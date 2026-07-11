@@ -23,6 +23,7 @@ from .routes import (
 if not SKIP_PAYMENT:
     from .routes import payment
 
+
 # Create main router
 router = APIRouter(prefix="/api/subscription", tags=["subscription"])
 
